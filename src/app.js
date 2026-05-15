@@ -5,11 +5,17 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Servidor TecnoRepuestos funcionando');
+    res.status(200).json({
+        mensaje: 'Servidor funcionando'
+    });
 });
 
-const PORT = 3000;
+module.exports = app;
 
-app.listen(PORT, () => {
-    console.log(`Servidor ejecutándose en puerto ${PORT}`);
-});
+if (require.main === module) {
+    const PORT = 3000;
+
+    app.listen(PORT, () => {
+        console.log(`Servidor ejecutándose en puerto ${PORT}`);
+    });
+}
